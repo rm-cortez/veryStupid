@@ -18,8 +18,9 @@ class Routing extends React.Component {
     super(props);
 
 
-    this.state = { rts: [], platformBlob:[]}
+    this.state = { rts: [], platformBlob:[], currentPage:{}}
     this.createPlatformBlob = this.createPlatformBlob.bind(this)
+    this.componentLookup = this.componentLookup.bind(this)
 
     this.createPlatformBlob(apiData)
 
@@ -43,13 +44,15 @@ class Routing extends React.Component {
   }//constructor
 
 
-/*
-componentDidMount(){
 
-  this.createPlatformBlob(apiData)
+componentLookup(index){
+
+ this.state.currentPage = index
+
+  console.log('lookupCurrent',index,this.state)
 }
 
-*/
+
 
 
   createPlatformBlob(data){
@@ -144,6 +147,7 @@ componentDidMount(){
                             <NavDropdown.Item
                             key={index}
                             href={baseURL + (item.permLink) }
+                            onClick={this.componentLookup(item)}
                             className="nav-inline-anchors">
                             {item.title}
                           </NavDropdown.Item>
@@ -183,13 +187,13 @@ componentDidMount(){
     "platform": "codingbat",
     "lng": "Java",
     "module": "Arrays",
-    "title": "Arrays3",
-    "dsc": "Given two arrays of ints sorted in increasing order, outer and inner,\r\nreturn true if all of the numbers in inner appear in outer.\r\nThe best solution makes only a single \"linear\" pass of both arrays,\r\ntaking advantage of the fact that both arrays are already in sorted order. ",
-    "code": "public boolean linearIn(int[] outer, int[] inner)\r\n{\r\n  int flag = 0;\r\n\r\n  for(int i =0; i < inner.length; i++)\r\n  {\r\n\r\n    for(int j=0; j < outer.length;j++)\r\n    {\r\n         if(inner[i] == outer[j])\r\n         {\r\n           flag++;\r\n            break;\r\n          }\r\n    }\r\n\r\n  }\r\n\r\n  return flag == inner.length;\r\n}",
-    "permLink": "java/arrays/arrays3",
+    "title": "Fix45",
+    "dsc": "(This is a slightly harder version of the fix34 problem.) Return an array that\r\ncontains exactly the same numbers as the given array, but rearranged so that every 4\r\nis immediately followed by a 5. Do not move the 4's, but every other number may move.\r\nThe array contains the same number of 4's and 5's, and every 4 has a number after it that\r\nis not a 4. In this version, 5's may appear anywhere in the original array.",
+    "code": "public int[] fix45(int[] nums)\n{\n  int len = nums.length;\n  ArrayList fives = new ArrayList();\n\n\n  for(int i =0; i < len; i++)\n      if(nums[i] == 5 )\n      {\n        if(i == 0 )              fives.add(i);\n        else if( nums[i-1] != 4) fives.add(i);\n      }\n\n\n\n\n  for(int j = 0; j<len; j++)\n  {\n     if(nums[j] == 4 && nums[j+1] != 5)\n     {\n       nums[(Integer)fives.get(0)] = nums[j+1];\n       fives.remove(0);\n       nums[j+1] = 5;\n\n     }\n\n\n  }\n\n\n  return nums;\n\n}",
+    "permLink": "java/arrays/fix45",
     "hasCode": "1",
     "platform_url": "https://codingbat.com/java"
-}} key="stupid"/>
+}} />
          </div>        
       </div>
     )
