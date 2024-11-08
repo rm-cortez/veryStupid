@@ -11,16 +11,24 @@ class CodeTemplate extends React.Component {
 
   constructor(props){
     super(props)
+
+    console.log('props',props)
     this.state = {
                     copied: false,
-                    btnLabel: 'Copy'
+                    btnLabel: 'Copy',
+                    hasContent: 0
                   };
   }
 
   render() {
     //let content = this.props.content.title;
     return (
-      <div className="row">
+
+
+
+      <div className={this.props.content.lng == 'stupid' ? 'stupid' : 'row'}>
+       
+
         <div className="col-md-12 mb-4">
         <h1 className="lng-name">{this.props.content.lng}</h1>
 
@@ -78,10 +86,11 @@ class CodeTemplate extends React.Component {
               </div>
             </div>
         </div>
+     
       </div>/*row end*/
 
 
-    )
+    )//render end
   }
 }
 export default CodeTemplate

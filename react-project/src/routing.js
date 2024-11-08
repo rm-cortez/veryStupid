@@ -185,7 +185,7 @@ componentLookup(index){
           <div>
              <CodeTemplate content={{
     "platform": "codingbat",
-    "lng": "Java",
+    "lng": "stupid",
     "module": "Arrays",
     "title": "Fix45",
     "dsc": "(This is a slightly harder version of the fix34 problem.) Return an array that\r\ncontains exactly the same numbers as the given array, but rearranged so that every 4\r\nis immediately followed by a 5. Do not move the 4's, but every other number may move.\r\nThe array contains the same number of 4's and 5's, and every 4 has a number after it that\r\nis not a 4. In this version, 5's may appear anywhere in the original array.",
