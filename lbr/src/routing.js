@@ -12,46 +12,51 @@ class Routing extends React.Component {
 
 
     this.state = { 
-        rts: [], 
-        platformBlob:[], 
-        currentPage:{}, 
         docSelected:1, 
         casesSelected:0,
         dateStart:null,
-        dateEnd:null
+        dateEnd:null,
+        loading:0,
+        loaded:0,
+        data:[
+          {
+            court:'court',
+            CaseFileDt:'2024-11-09',
+            caseName:'caseName',
+            caseNumber:'Number'
+          },
+          {
+            court:'court',
+            CaseFileDt:'2024-11-10',
+            caseName:'caseName',
+            caseNumber:'Number'
+          },
+          {
+            court:'court',
+            CaseFileDt:'2024-11-11',
+            caseName:'caseName',
+            caseNumber:'Number'
+          },
+          {
+            court:'court',
+            CaseFileDt:'2024-11-12',
+            caseName:'caseName',
+            caseNumber:'Number'
+          }
+        ]
     }
-    this.createPlatformBlob = this.createPlatformBlob.bind(this)
+
     this.componentLookup = this.componentLookup.bind(this)
     this.dateStart = this.dateStart.bind(this)
     this.dateEnd = this.dateEnd.bind(this)
     this.searchBtn = this.searchBtn.bind(this)
 
-    //this.createPlatformBlob(apiData)
 
-/*
-    axios({method:'get',url:`${URL.apiUrl}/json-builder.php`})
-    .then(response => {
-
-
-
-
-                    let data = response.data
-
-                    this.createPlatformBlob(data)
-
-                  })//axios fetch
-                  .catch(err => {
-                    this.createPlatformBlob(apiData)
-                  })
-
-*/
-  }//constructor
-
-
+  }
 
 componentLookup(event){
 
- //this.state.currentPage = index
+
 
   console.log('lookupCurrent',event.target.id)
 
@@ -92,29 +97,49 @@ dateEnd(event){
 
 
 
-  createPlatformBlob(data){
 
-    console.log('didMount',data)
-
- 
-
-
-/*
-    this.setState({
-      rts: data,
-      platformBlob: platformBlob
-    })
-*/
-
-    // this.state.rts= data
-    // this.state.platformBlob = platformBlob
-
-    console.log('data',this.state)
-
-  }//createPlatformBlob end
 
 
   searchBtn(){
+
+    this.setState({
+      loading:1
+    })
+
+
+    axios.defaults.headers.common = {
+      'Authorization': `bearer daoijsdsa:oiajsdlasjd'`,
+      'Content-Type':'application/json'
+  }
+
+
+  axios({method:'post',url:`http://localhost:8000/api/query/targets`})
+  .then(response => {
+
+
+
+
+                  let data = response.data
+
+                  this.setState({
+                    loading:0,
+                    loaded:1
+                  })
+
+                  console.log('resp',data)
+
+                })//axios fetch
+                .catch(err => {
+
+                  this.setState({
+                    loading:0,
+                    loaded:1
+                  })
+                  console.log('err',this.state)
+                })
+
+
+
     console.log(this.state)
   }
 
@@ -187,12 +212,13 @@ dateEnd(event){
           </div>
 
           <div className="col-md-12 Loading">
+            <div className={this.state.loading == 1 ? '' : 'display-none'}>
             Loading...
-            <br />&nbsp;
+            </div>
           </div>
         </div>
 
-        <div className="row results">
+        <div className={this.state.loaded == 1 ? 'row results' : 'display-none'}>
 
           <div className="col-md-12">
             <table className="table table-bordered">
@@ -206,16 +232,22 @@ dateEnd(event){
                   </tr>
               </thead>
               <tbody>
-
-                      <tr>
+                {
+                  this.state.data.map( (item,i) => (
+                    <tr key={i}>
                           <td className="centered">
                             <input type="checkbox" className='inp-picker' />
                           </td>
-                          <td>@forecast.Date.ToShortDateString()</td>
-                          <td>@forecast.TemperatureC</td>
-                          <td>@forecast.TemperatureF</td>
-                          <td>@forecast.Summary</td>
-                      </tr>
+                          
+                          <td >{item.court}</td>
+                          <td>{item.CaseFileDt}</td>
+                          <td>{item.caseName}</td>
+                          <td>{item.caseNumber}</td>
+                    </tr>
+
+                  ))
+                }
+                      
                   
               </tbody>
           </table>`

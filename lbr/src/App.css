@@ -111,4 +111,6 @@ td > input{
   min-height: 50px;
 }
 
-
+.display-none{
+  display: none;
+}
