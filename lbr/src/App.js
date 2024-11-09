@@ -62,11 +62,49 @@ function App() {
 
           <div className="col-md-12 Loading">
             Loading...
+            <br />&nbsp;
           </div>
          </div>
 
          <div className="row results">
 
+          <div className="col-md-12">
+            <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th>&nbsp;</th>
+                      <th>Court</th>
+                      <th>Case Filing Date</th>
+                      <th>Case Name</th>
+                      <th>Case Number</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                      <tr>
+                          <td className="centered">
+                            <input type="checkbox" className='inp-picker' />
+                          </td>
+                          <td>@forecast.Date.ToShortDateString()</td>
+                          <td>@forecast.TemperatureC</td>
+                          <td>@forecast.TemperatureF</td>
+                          <td>@forecast.Summary</td>
+                      </tr>
+                  
+              </tbody>
+          </table>`
+
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              </ul>
+            </nav>
+          </div>
+`          
          </div>
         </div>
         

@@ -103,6 +103,18 @@ button.btn.btn-search {
   color: #fff;
 }
 
+td > input{
+  width: 15px;
+  height: 15px;
+}
+
+.centered{
+  text-align: center;
+}
+
+.col-md-12.Loading {
+  min-height: 50px;
+}
 
 
 @keyframes App-logo-spin {
