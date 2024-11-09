@@ -60,6 +60,9 @@ function App() {
             </div>
           </div>
 
+          <div className="col-md-12 Loading">
+            Loading...
+          </div>
          </div>
 
          <div className="row results">

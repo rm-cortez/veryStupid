@@ -83,6 +83,10 @@ body{
   border-radius: 5px;
 }
 
+.choice-picker > div:hover{
+  cursor: pointer;
+}
+
 .choice-picker > div.selected{
   background: #71014A;
   color: #FFF;
