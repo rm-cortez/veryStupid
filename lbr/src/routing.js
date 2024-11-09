@@ -11,7 +11,7 @@ class Routing extends React.Component {
     super(props);
 
 
-    this.state = { rts: [], platformBlob:[], currentPage:{}}
+    this.state = { rts: [], platformBlob:[], currentPage:{}, docSelected:1, casesSelected:0}
     this.createPlatformBlob = this.createPlatformBlob.bind(this)
     this.componentLookup = this.componentLookup.bind(this)
 
@@ -38,11 +38,28 @@ class Routing extends React.Component {
 
 
 
-componentLookup(index){
+componentLookup(event){
 
- this.state.currentPage = index
+ //this.state.currentPage = index
 
-  console.log('lookupCurrent',index,this.state)
+  console.log('lookupCurrent',event.target.id)
+
+
+  if(event.target.id == 'docs'){
+    this.setState({
+      docSelected:1,
+      casesSelected:0
+    })
+    
+    
+  }
+  else{
+    this.setState({
+      docSelected:0,
+      casesSelected:1
+    })
+  }
+
 }
 
 
@@ -113,11 +130,11 @@ componentLookup(index){
           <div className="col-md-4">
 
             <div className="choice-picker">
-                <div className="docs selected">
+                <div id="docs" className={this.state.docSelected == 1 ? ' selected': ''} onClick={this.componentLookup}> 
                   Documents
                 </div>
 
-                <div className="cases">
+                <div id="cases" className={this.state.casesSelected == 1 ? ' selected': ''}  onClick={this.componentLookup}>
                   Cases
                 </div>
 
@@ -127,11 +144,11 @@ componentLookup(index){
 
           <div className="col-md-8">
 
-            <div class="input-group mb-3">
-              <input type="date" class="form-control" placeholder="Start Date" aria-label="Start Date"  />
-              <input type="date" class="form-control" placeholder="End Date" aria-label="Start Date"  />
+            <div className="input-group mb-3">
+              <input type="date" className="form-control" placeholder="Start Date" aria-label="Start Date"  />
+              <input type="date" className="form-control" placeholder="End Date" aria-label="Start Date"  />
               <button className="btn btn-search " >
-              <i class="fa fa-search"></i>&nbsp;
+              <i className="fa fa-search"></i>&nbsp;
                 Search
               </button>
             </div>
@@ -146,7 +163,7 @@ componentLookup(index){
         <div className="row results">
 
           <div className="col-md-12">
-            <table class="table table-bordered">
+            <table className="table table-bordered">
               <thead>
                   <tr>
                       <th>&nbsp;</th>
@@ -172,12 +189,12 @@ componentLookup(index){
           </table>`
 
             <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+              <ul className="pagination">
+                <li className="page-item"><a className="page-link" href="#">Previous</a></li>
+                <li className="page-item"><a className="page-link" href="#">1</a></li>
+                <li className="page-item"><a className="page-link" href="#">2</a></li>
+                <li className="page-item"><a className="page-link" href="#">3</a></li>
+                <li className="page-item"><a className="page-link" href="#">Next</a></li>
               </ul>
             </nav>
           </div>
