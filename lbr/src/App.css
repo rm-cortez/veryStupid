@@ -114,3 +114,8 @@ td > input{
 .display-none{
   display: none;
 }
+
+.loader{
+  font-size: 10px;
+  color: greenyellow;
+}

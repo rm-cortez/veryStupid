@@ -204,7 +204,10 @@ dateEnd(event){
             <div className="input-group mb-3">
               <input type="date" className="form-control" placeholder="Start Date" aria-label="Start Date"  onChange={this.dateStart}/>
               <input type="date" className="form-control" placeholder="End Date" aria-label="Start Date"  onChange={this.dateEnd}/>
-              <button className="btn btn-search " onClick={this.searchBtn}>
+              <button className="btn btn-search " 
+                      onClick={this.searchBtn} 
+                      disabled={this.state.dateStart != null && this.state.dateEnd != null ? false : true}
+              >
               <i className="fa fa-search"></i>&nbsp;
                 Search
               </button>
@@ -213,7 +216,9 @@ dateEnd(event){
 
           <div className="col-md-12 Loading">
             <div className={this.state.loading == 1 ? '' : 'display-none'}>
-            Loading...
+            
+            Loading...&nbsp;
+            <div class="spinner-border loader"></div>
             </div>
           </div>
         </div>
