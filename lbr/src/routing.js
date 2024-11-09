@@ -11,9 +11,20 @@ class Routing extends React.Component {
     super(props);
 
 
-    this.state = { rts: [], platformBlob:[], currentPage:{}, docSelected:1, casesSelected:0}
+    this.state = { 
+        rts: [], 
+        platformBlob:[], 
+        currentPage:{}, 
+        docSelected:1, 
+        casesSelected:0,
+        dateStart:null,
+        dateEnd:null
+    }
     this.createPlatformBlob = this.createPlatformBlob.bind(this)
     this.componentLookup = this.componentLookup.bind(this)
+    this.dateStart = this.dateStart.bind(this)
+    this.dateEnd = this.dateEnd.bind(this)
+    this.searchBtn = this.searchBtn.bind(this)
 
     //this.createPlatformBlob(apiData)
 
@@ -62,6 +73,22 @@ componentLookup(event){
 
 }
 
+dateStart(event){
+
+  console.log('date.Start',event.target.value)
+  this.setState({
+    dateStart:event.target.value
+  })
+}
+
+dateEnd(event){
+  console.log('date.dateEnd',event.target.value)
+
+  this.setState({
+    dateEnd:event.target.value
+  })
+}
+
 
 
 
@@ -85,6 +112,11 @@ componentLookup(event){
     console.log('data',this.state)
 
   }//createPlatformBlob end
+
+
+  searchBtn(){
+    console.log(this.state)
+  }
 
 
   render() {
@@ -145,9 +177,9 @@ componentLookup(event){
           <div className="col-md-8">
 
             <div className="input-group mb-3">
-              <input type="date" className="form-control" placeholder="Start Date" aria-label="Start Date"  />
-              <input type="date" className="form-control" placeholder="End Date" aria-label="Start Date"  />
-              <button className="btn btn-search " >
+              <input type="date" className="form-control" placeholder="Start Date" aria-label="Start Date"  onChange={this.dateStart}/>
+              <input type="date" className="form-control" placeholder="End Date" aria-label="Start Date"  onChange={this.dateEnd}/>
+              <button className="btn btn-search " onClick={this.searchBtn}>
               <i className="fa fa-search"></i>&nbsp;
                 Search
               </button>
