@@ -14,19 +14,67 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #71014A;
+  min-height: 5vh;
 }
 
-.App-link {
-  color: #61dafb;
+body{
+  background: #41002A;
+  min-height: 100vh;
 }
+
+.main-view{
+  min-height: 100vh;
+  background-color: #F8F8F8;
+  padding-left: 0;
+
+}
+
+.main-content{
+  margin: 15px;
+}
+
+.sidebar-header{
+  background-image: url('../public/img/IMG_3078.jpeg');
+  height: 60px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.sidebar-content{
+  color: #fff;
+  padding-left: 50px;
+  margin-bottom: 10px;
+  min-height: 25px;
+  position: relative;
+}
+
+.sidebar-icon{
+  background-image: url('../public/img/IMG_3080.jpeg');
+  height: 20px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 13px;
+  top: 1px;
+}
+
+.highlighted{
+  background: #71014A;
+  margin-right: -15px;
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+
+.sidebar-content.highlighted  > .sidebar-icon{
+  top:5px;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

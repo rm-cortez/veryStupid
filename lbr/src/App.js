@@ -1,18 +1,39 @@
-import 'core-js'
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Routing from './routing';
-import Footer from './htmlElements/footer';
+
+
 
 function App() {
   return (
-    <div >
-      stupid
-      <Routing />
-      <footer className="rcs-footer">
-        <Footer />
-      </footer>
+    <div className="row">
+      
+      <div className="col-md-2">
+
+        <div className="sidebar-header">
+
+        </div>
+        <div className="sidebar-content">
+          <div className='sidebar-icon'></div>
+          Dashboard
+        </div>
+
+        <div className="sidebar-content highlighted">
+          <div className='sidebar-icon'></div>
+          Advanced Search
+        </div>
+      </div>
+
+      <div className="col-md-10 main-view">
+
+        <div className='App-header'>
+
+        </div>
+
+        <div className="main-content">
+         main view
+        </div>
+        
+      </div>
     </div>
   );
 }
