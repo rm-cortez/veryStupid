@@ -75,6 +75,31 @@ body{
 }
 
 
+.choice-picker > div{
+  background-color: #fff;
+  color:#000;
+  float: left;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.choice-picker > div.selected{
+  background: #71014A;
+  color: #FFF;
+}
+
+input[type="date"] {
+  background: #EEEEEE;
+  max-width: 20%;
+}
+
+button.btn.btn-search {
+  background: #FE1879;
+  margin-left: 20px;
+  color: #fff;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

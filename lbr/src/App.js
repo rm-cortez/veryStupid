@@ -30,7 +30,41 @@ function App() {
         </div>
 
         <div className="main-content">
-         main view
+
+         <div className="row search">
+
+          <div className="col-md-4">
+
+            <div className="choice-picker">
+                <div className="docs selected">
+                  Documents
+                </div>
+
+                <div className="cases">
+                  Cases
+                </div>
+
+            </div>
+
+          </div>
+
+          <div className="col-md-8">
+
+            <div class="input-group mb-3">
+              <input type="date" class="form-control" placeholder="Start Date" aria-label="Start Date"  />
+              <input type="date" class="form-control" placeholder="End Date" aria-label="Start Date"  />
+              <button className="btn btn-search " >
+              <i class="fa fa-search"></i>&nbsp;
+                Search
+              </button>
+            </div>
+          </div>
+
+         </div>
+
+         <div className="row results">
+
+         </div>
         </div>
         
       </div>
