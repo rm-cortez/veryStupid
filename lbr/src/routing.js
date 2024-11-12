@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import {dt} from './dt.js';
 
 
 
@@ -12,44 +13,21 @@ class Routing extends React.Component {
 
 
     this.state = { 
-        docSelected:1, 
-        casesSelected:0,
+        docSelected:0, 
+        casesSelected:1,
         dateStart:null,
         dateEnd:null,
         loading:0,
         loaded:0,
-        data:[
-          {
-            court:'court',
-            CaseFileDt:'2024-11-09',
-            caseName:'caseName',
-            caseNumber:'Number'
-          },
-          {
-            court:'court',
-            CaseFileDt:'2024-11-10',
-            caseName:'caseName',
-            caseNumber:'Number'
-          },
-          {
-            court:'court',
-            CaseFileDt:'2024-11-11',
-            caseName:'caseName',
-            caseNumber:'Number'
-          },
-          {
-            court:'court',
-            CaseFileDt:'2024-11-12',
-            caseName:'caseName',
-            caseNumber:'Number'
-          }
-        ]
+        data:JSON.parse(dt)
     }
 
     this.componentLookup = this.componentLookup.bind(this)
     this.dateStart = this.dateStart.bind(this)
     this.dateEnd = this.dateEnd.bind(this)
     this.searchBtn = this.searchBtn.bind(this)
+
+    //console.log('dt',dt)
 
 
   }
@@ -112,8 +90,25 @@ dateEnd(event){
       'Content-Type':'application/json'
   }
 
+  var dt = `{
+    "search": {
+      "target_name": "trademark_cases",
+      "criteria": [{
+            "name":"case_date",
+            "joinpath_name":"case_filing_date",
+            "value": {"before":"${this.state.dateEnd}", "after":"${this.state.dateStart}"}
+      }],
+      "field_names": ["case_id","case_name","case_number","case_filing_date","court_abbreviation"],
+      "section_names":[]
+    },
+    "orders": ["case_id DESC"],
+    "start":0,
+    "limit":10
+  }`
 
-  axios({method:'post',url:`http://localhost:8000/api/query/targets`})
+
+  //axios({method:'post',url:`http://localhost:8000/api/query/targets`})
+  axios.post('http://localhost:8000/api/query/grid',dt)
   .then(response => {
 
 
@@ -128,14 +123,24 @@ dateEnd(event){
 
                   console.log('resp',data)
 
+                  this.state.data = data
+
                 })//axios fetch
                 .catch(err => {
 
-                  this.setState({
-                    loading:0,
-                    loaded:1
-                  })
-                  console.log('err',this.state)
+
+                  setTimeout(() => {
+
+                    this.setState({
+                      loading:0,
+                      loaded:1
+                    })
+                    console.log('err - displaying failover data',this.state)
+
+
+                  }, 1000);
+
+                  
                 })
 
 
@@ -218,7 +223,7 @@ dateEnd(event){
             <div className={this.state.loading == 1 ? '' : 'display-none'}>
             
             Loading...&nbsp;
-            <div class="spinner-border loader"></div>
+            <div className="spinner-border loader"></div>
             </div>
           </div>
         </div>
@@ -244,10 +249,10 @@ dateEnd(event){
                             <input type="checkbox" className='inp-picker' />
                           </td>
                           
-                          <td >{item.court}</td>
-                          <td>{item.CaseFileDt}</td>
-                          <td>{item.caseName}</td>
-                          <td>{item.caseNumber}</td>
+                          <td >{item.court_abbreviation}</td>
+                          <td>{item.case_filing_date}</td>
+                          <td>{item.case_name}</td>
+                          <td>{item.case_number}</td>
                     </tr>
 
                   ))
