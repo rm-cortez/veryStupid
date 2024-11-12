@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import { Navbar,Nav,Row,Col , NavDropdown} from 'react-bootstrap'
@@ -18,7 +19,20 @@ class Routing extends React.Component {
     super(props);
 
 
-    this.state = { rts: [], platformBlob:[], currentPage:{}}
+    this.state = { 
+                   rts: [], 
+                   platformBlob:[], 
+                   currentPage:{
+    "platform": "",
+    "lng": "stupid",
+    "module": "",
+    "title": "",
+    "dsc": "",
+    "permLink": "java/arrays",
+    "hasCode": "1",
+    "platform_url": ""
+}
+    }
     this.createPlatformBlob = this.createPlatformBlob.bind(this)
     this.componentLookup = this.componentLookup.bind(this)
 
@@ -45,11 +59,12 @@ class Routing extends React.Component {
 
 
 
-componentLookup(index){
+componentLookup(event,index){
 
  this.state.currentPage = index
+ event.preventDefault();
 
-  console.log('lookupCurrent',index,this.state)
+  console.log('lookupCurrent',index,this.state,event)
 }
 
 
@@ -136,7 +151,7 @@ componentLookup(index){
                         <React.Fragment key={i}>
                         <NavDropdown.Item
                         key={item.name}
-                        href={item.url}
+                        href="#"
                         target="_blank"
                         className="platform-bar">
                         {item.name}
@@ -146,8 +161,21 @@ componentLookup(index){
                         {  (item.items).map( (item,index) => (
                             <NavDropdown.Item
                             key={index}
-                            href={baseURL + (item.permLink) }
-                            onClick={this.componentLookup(item)}
+                            href="#"
+                            id={item.permLink}
+                            onClick={(event,item)=>{
+                             event.preventDefault();
+                            
+                            var rt = this.state.rts.filter((rts)=> rts.permLink == event.target.id)
+                             
+                            this.state.currentPage = {...rt[0]}
+                            
+ 
+                             console.log('page',this.state.currentPage);
+
+                            				
+}}
+                            
                             className="nav-inline-anchors">
                             {item.title}
                           </NavDropdown.Item>
@@ -163,37 +191,9 @@ componentLookup(index){
             </Navbar.Collapse>
           </Navbar>
           </header>
-          <Row className="main-content pt-4">
-            <Col className="col-md-12">
-              <div>
-		stupid
-              
-
-              { ( routes ).map((route,index) => (
-                  <div  className={'/' + (route.permLink) }  key={index} >
-                  {'/' + (route.permLink) } 
-                  </div>
-              ))}
-
-
-              </div>
-            </Col>
-            <div>
-
-           </div>
-          </Row>
           <div>
-             <CodeTemplate content={{
-    "platform": "codingbat",
-    "lng": "stupid",
-    "module": "Arrays",
-    "title": "Fix45",
-    "dsc": "(This is a slightly harder version of the fix34 problem.) Return an array that\r\ncontains exactly the same numbers as the given array, but rearranged so that every 4\r\nis immediately followed by a 5. Do not move the 4's, but every other number may move.\r\nThe array contains the same number of 4's and 5's, and every 4 has a number after it that\r\nis not a 4. In this version, 5's may appear anywhere in the original array.",
-    "code": "public int[] fix45(int[] nums)\n{\n  int len = nums.length;\n  ArrayList fives = new ArrayList();\n\n\n  for(int i =0; i < len; i++)\n      if(nums[i] == 5 )\n      {\n        if(i == 0 )              fives.add(i);\n        else if( nums[i-1] != 4) fives.add(i);\n      }\n\n\n\n\n  for(int j = 0; j<len; j++)\n  {\n     if(nums[j] == 4 && nums[j+1] != 5)\n     {\n       nums[(Integer)fives.get(0)] = nums[j+1];\n       fives.remove(0);\n       nums[j+1] = 5;\n\n     }\n\n\n  }\n\n\n  return nums;\n\n}",
-    "permLink": "java/arrays/fix45",
-    "hasCode": "1",
-    "platform_url": "https://codingbat.com/java"
-}} />
+              
+             <CodeTemplate content={this.state.currentPage} />
          </div>        
       </div>
     )
