@@ -40,9 +40,41 @@
                 <span class="sr-only">Loading...</span>
               </div>
             </div>
-            <div class="col-md-4" :id=" fullWidth?'fw-'+item.id :''"
-                  v-for="item in content"
-                  :key="item.id">
+            <div class="col-md-4" :id=" fullWidth?'fw-'+query.id :''"
+                  v-for="query in content"
+                  :key="query.id">
+
+                  <div class="rounded border search-item p-2 text-left bg-white mb-4">
+
+                  <h4 class="m-0 query-lng">{{query.lng}} </h4>
+                  <div :class=" showCode? '':'query-title-section' ">
+                    <p class="font-weight-lighter query-title" >{{query.title}}</p>
+                  </div>
+
+                  <div class="text-center">
+                    <hr>
+                    <button class="btn btn-outline-dark btn-sm"
+                    v-on:click="viewMore" :id="query.id"  >
+                    {{showCode ?'View Less' : 'View More'}}
+                    </button>
+                  </div>
+
+                  <div class="view-more-section mt-2" :class="showCode ? '' : 'd-none'  ">
+                    <hr>
+
+                    <div class="alert alert-primary" v-if="query.dsc != null && query.dsc !='' ">
+                      <p  class="query-dsc mb-0">
+                        {{query.dsc}}
+                      </p>
+                    </div>
+
+                      <div class="code-section" v-if="query.code != null && query.code !='' " >
+                      <pre class="mb-0">
+                        {query.code}
+                      </pre>
+                      </div>
+                  </div>
+                </div>
                   
 
             </div>
@@ -79,7 +111,9 @@ export default {
       btnLabel:'Copy',
       queryResult:'',
       fullWidth:true,
-      content: []
+      content: [],
+      viewMoreLabel: 'View More',
+      showCode: false
 
 
     }
@@ -91,7 +125,7 @@ export default {
       this.queryResult ='Loading'
       let val = e.target.value
 
-      console.log('query',val)
+      //console.log('query',val)
 
       /*
       if(val.length > 0 ){
@@ -126,7 +160,7 @@ export default {
       })
       .catch(error => {
 
-        console.log(error,'stupid')
+        console.log(error)
         this.db_error(val)
 
 
@@ -149,6 +183,18 @@ export default {
 
       this.content = new Array(...this.content)
       console.log('content',this.content, this.content.length)
+    },
+    viewMore: function(e){
+      this.showCode = !this.showCode
+
+      let el = '#fw-'+ e.target.id
+
+      if( e.target.innerText == 'View Less'){
+        document.querySelector( el ).classList.remove('fullwidth')
+      }
+     else {
+       document.querySelector( el ).classList.add('fullwidth')
+     }
     }
   },
   beforeUpdate(){
