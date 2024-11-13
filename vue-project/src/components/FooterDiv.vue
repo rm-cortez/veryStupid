@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Footer',
+  name: 'FooterDiv',
   data(){
     return {
       title: (new Date).getFullYear(),

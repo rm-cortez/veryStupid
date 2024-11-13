@@ -1,6 +1,6 @@
 <template>
   <header>
-    <b-jumbotron class="mb-0">
+    <div class="jumbotron mb-0">
 
     <div class="logo-container  mx-auto">
       <a href="/" class="custom-logo-link" rel="home">
@@ -13,22 +13,17 @@
         <span class="bg-dark">{{this.tagLine}}</span>
     </p>
     </div>
-  </b-jumbotron>
+  </div>
   </header>
 </template>
 
 <script>
-import Vue from 'vue'
-import {BJumbotron, BButton} from 'bootstrap-vue'
 import {URL} from '../api-config'
 import axios from 'axios'
 
-Vue.component('b-button',BButton)
-Vue.component('b-jumbotron', BJumbotron)
-
 
 export default {
-  name: 'Header',
+  name: 'HeaderDiv',
   data(){
     return{
       tagLine:null

@@ -1,0 +1,126 @@
+body{
+  height:100%;
+  min-height:100vh;
+  padding-bottom: 60px;
+  background-image: #fff;
+  overflow-x: hidden;
+}
+
+.logo-container {
+    background: #0B0F12;
+    border: 1px solid #c0c0c0;
+    border-radius: 25%;
+    box-shadow: 5px 5px 5px #c0c0c0;
+    padding: 20px 20px 30px 20px;
+    width: 230px;
+}
+
+header .jumbotron{
+  background-image: url('../img/night-time.jpg');
+  background-size: cover;
+  border-radius: 0;
+  color: #fff;
+  margin-right: -10px;
+}
+
+li.nav-item.notFound{
+  display: none;
+}
+
+footer{
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.copy-clipboard-section + .bg-white pre{
+  padding: 30px !important;
+  margin-bottom: 0;
+}
+.router-link-exact-active{
+  color: #E71D1C !important;
+}
+
+
+.code-section {
+  position: relative;
+}
+.code-section .btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+pre{
+  display: block;
+  overflow-x: auto;
+  padding: 20px 10px 0;
+  color: rgb(171, 178, 191);
+  background: rgb(40, 44, 52);
+  min-height: 100px;
+}
+
+pre code.hljs{
+  /*background: rgb(40, 44, 52);*/
+  display: block;
+  color: rgb(171, 178, 191);
+  padding:1.5rem;
+}
+
+.txt-required:not(.d-none) + #nav-search{
+  border-color: #dc3545 ;
+  box-shadow: 0 0 0 0.2rem #dc3545;
+}
+
+.search-item{
+  box-shadow: 5px 5px 15px 0px rgba(50, 50, 50, 0.75);
+}
+.query-lng,
+.query-dsc,
+.query-title{
+  text-transform: capitalize;
+}
+
+.query-title-section {
+    height: 45px;
+    overflow: hidden;
+}
+.query-message{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.query-section .col-md-4.fullwidth{
+  width: 100% ;
+  flex:0 0 100% ;
+  max-width: 100%;
+
+}
+
+.form-search{
+  position: absolute;
+  top:10px;
+  right: 30px;
+}
+#nav-search{
+  margin-left: 5px;
+}
+#nav-search.form-control{
+  width: inherit;
+}
+.view-more-section .alert{
+  white-space: pre-wrap;
+}
+
+.db-error-h1 {
+    border: 1px dashed;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+@media all and (max-width:767px ){
+ html{
+   overflow-x:hidden;
+ }
+}
