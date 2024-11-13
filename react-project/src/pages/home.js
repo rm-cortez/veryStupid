@@ -30,9 +30,13 @@ class Home extends React.Component {
     .catch( err => {
       this.setState(
         {
-          imgUrl:`http://rcsproductions.us/wp-content/uploads/2020/08/profile-pic-1.jpeg` ,
+          imgUrl:`/img/IMG_3070.JPEG` ,
           content:`
           <h1  class="db-error-h1 "><strong >React Project</strong></h1>
+          
+           <p>
+              I created this SPA site just to showcase the solutions I came up with when solving programming exercises. Please, click on Templates over the Navigation Menu and you will see the solutions
+          </p>
           <h3 ><strong >Technologies Used</strong></h3>
           <ul >
              <li >Bootstrap</li>

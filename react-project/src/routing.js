@@ -144,7 +144,7 @@ componentLookup(event,index){
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                <Nav className="mr-auto">
-                <Nav.Link href={baseURL}>Home</Nav.Link>
+                <Nav.Link href='#' onClick={(event)=> {event.preventDefault(); this.setState({title:'',lng:'stupid'})}}>Home</Nav.Link>
                   <NavDropdown title="Templates" id="basic-nav-dropdown" onToggle={()=> document.querySelector('body').classList.toggle('overflow-hidden') }>
 
 
@@ -196,6 +196,11 @@ componentLookup(event,index){
           </Navbar>
           </header>
           <div>
+             {
+                 this.state.currentPage.title === '' ?
+                   <Home />
+                :''
+             }
              <CodeTemplate content={this.state.currentPage} key={this.state.currentPage.permLink} id={this.state.currentPage.permLink} />
          </div>        
       </div>

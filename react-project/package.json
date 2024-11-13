@@ -1,5 +1,6 @@
 {
   "name": "react-project",
+  Homepage:’/react-project/’
   "version": "0.1.0",
   "private": true,
   "dependencies": {
