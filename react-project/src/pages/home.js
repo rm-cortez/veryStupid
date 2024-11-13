@@ -30,7 +30,7 @@ class Home extends React.Component {
     .catch( err => {
       this.setState(
         {
-          imgUrl:`/img/IMG_3070.JPEG` ,
+          imgUrl:`https://rm-cortez.github.io/react-project/img/IMG_3070.JPEG` ,
           content:`
           <h1  class="db-error-h1 "><strong >React Project</strong></h1>
           
