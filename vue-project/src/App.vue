@@ -69,9 +69,7 @@
                     </div>
 
                       <div class="code-section" v-if="query.code != null && query.code !='' " >
-                      <pre class="mb-0">
-                        {query.code}
-                      </pre>
+                      <pre class="mb-0">{{query.code}}</pre>
                       </div>
                   </div>
                 </div>
@@ -88,12 +86,15 @@
 </template>
 
 <script>
-//import home from './pages/home.vue'   <home /> import {routes} from './routes'
 import HeaderDiv from './components/HeaderDiv.vue'
 import FooterrDiv from './components/FooterDiv.vue'
 import axios from 'axios'
 import {URL} from './api-config'
 import {apiData} from './apiData'
+
+
+
+
 
 export default {
   name: 'App', 
