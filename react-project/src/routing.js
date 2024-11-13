@@ -23,16 +23,18 @@ class Routing extends React.Component {
                    rts: [], 
                    platformBlob:[], 
                    currentPage:{
-    "platform": "",
-    "lng": "stupid",
-    "module": "",
-    "title": "",
-    "dsc": "",
-    "permLink": "java/arrays",
-    "hasCode": "1",
-    "platform_url": ""
-}
-    }
+                                 "platform": "",
+                                 "lng": "stupid",
+                                 "module": "",
+                                 "title": "",
+                                 "dsc": "",
+                                 "permLink": "java/arrays",
+                                 "hasCode": "1",
+                                 "platform_url": ""
+                   },
+                  quePase:'elImbecil'
+                }
+
     this.createPlatformBlob = this.createPlatformBlob.bind(this)
     this.componentLookup = this.componentLookup.bind(this)
 
@@ -110,6 +112,7 @@ componentLookup(event,index){
   }//createPlatformBlob end
 
 
+
   render() {
 
     //dev / prod -> Set variable in deployConfig
@@ -169,9 +172,10 @@ componentLookup(event,index){
                             var rt = this.state.rts.filter((rts)=> rts.permLink == event.target.id)
                              
                             this.state.currentPage = {...rt[0]}
+                            this.setState({quePase:'elEstupido'})
                             
  
-                             console.log('page',this.state.currentPage);
+                            // console.log('page',this.state.currentPage);
 
                             				
 }}
@@ -192,8 +196,7 @@ componentLookup(event,index){
           </Navbar>
           </header>
           <div>
-              
-             <CodeTemplate content={this.state.currentPage} />
+             <CodeTemplate content={this.state.currentPage} key={this.state.currentPage.permLink} id={this.state.currentPage.permLink} />
          </div>        
       </div>
     )
