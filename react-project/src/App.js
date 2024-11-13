@@ -8,7 +8,6 @@ import Footer from './htmlElements/footer';
 function App() {
   return (
     <div >
-      stupid
       <Routing />
       <footer className="rcs-footer">
         <Footer />
