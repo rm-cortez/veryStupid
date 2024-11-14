@@ -1,31 +1,33 @@
 <template>
   <HeaderDiv />
   <div class="row">
-    <div class="col-md-12 position-relative">
+    <div class="col-md-12 position-relative" style="padding-right:0">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation" @click="toggleNavbar">
+              <button class="navbar-toggler d-none" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="true" aria-label="Toggle navigation" @click="toggleNavbar">
               <span class="navbar-toggler-icon"></span>
               </button>
-              <div id="navbarCollapse" class="collapse navbar-collapse" :class=" showNavBar?'show':''">
+              <div id="navbarCollaps" class="collapse navbar-collapse show" >
                 <ul id="primary-menu" class="navbar-nav mr-auto">
-                  <li class="nav-item text-white" >
+                  <li class="nav-item " style="color:#FF1D1D">
                     CheatSheet
+                  </li>
+                  <li class="navbar-nav mr-auto">
+                    <div class="form-inline form-search" >
+                      <div class="badge badge-danger txt-required mr-1"
+                            :class="{ 'd-none' : hideRequired}" >
+                        Required
+                      </div>
+                      <input type="text"
+                              placeholder="Search"
+                              v-on:keyup="processQuery"
+                              class="mr-sm-2 form-control"
+                              id="nav-search"
+                              autocomplete="off">
+                    </div>
                   </li>
                 </ul>
               </div>
             </nav>
-    </div>
-    <div class="form-inline form-search" >
-      <div class="badge badge-danger txt-required mr-1"
-            :class="{ 'd-none' : hideRequired}" >
-        Required
-      </div>
-      <input type="text"
-              placeholder="Search"
-              v-on:keyup="processQuery"
-              class="mr-sm-2 form-control"
-              id="nav-search"
-              autocomplete="off">
     </div>
     <div class="col-md-12 main-content">
       <div class="col-md-12">
@@ -230,7 +232,7 @@ export default {
   beforeUpdate(){
     //clears input field
     //this.inputVal = ''
-    document.querySelector('#navbarCollapse').classList.remove("show")
+    //document.querySelector('#navbarCollapse').classList.remove("show")
   }
 }
 </script>
