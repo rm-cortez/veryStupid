@@ -127,8 +127,7 @@ export default {
 
     processQuery(e){
 
-      this.queryResult ='Loading'
-      let val = e.target.value
+      
 
       //console.log('query',val)
 
@@ -148,28 +147,38 @@ export default {
 
       this.queryResult = 'Loading'
 
-      let queryUrl = `${URL.apiUrl}/cheatsheet-builder.php?q=`+ encodeURI((val).trim())
-      axios({method:'get',url:queryUrl})
 
-      .then(data => {
-        if( data.data.length == 0) this.queryResult = 'No Results'
+      let val = e.target.value
 
-        else if (typeof data.data == 'string'){
+      if(val.length == 0){
+        this.content = []
+        this.queryResult = ''
+      }
+      else{
+
+        let queryUrl = `${URL.apiUrl}/cheatsheet-builder.php?q=`+ encodeURI((val).trim())
+        axios({method:'get',url:queryUrl})
+
+        .then(data => {
+          if( data.data.length == 0) this.queryResult = 'No Results'
+
+          else if (typeof data.data == 'string'){
+            this.db_error(val)
+          }
+          else{
+            this.content = data.data
+          }
+
+
+        })
+        .catch(error => {
+
+          console.log(error)
           this.db_error(val)
-        }
-        else{
-          this.content = data.data
-        }
 
 
-      })
-      .catch(error => {
-
-        console.log(error)
-        this.db_error(val)
-
-
-      })//catch end
+        })//catch end
+      }
 
 
     },
@@ -182,8 +191,10 @@ export default {
       this.content = apiData.filter( d => {
                         if ( ((`${d.lng} ${d.code} ${d.dsc} ${d.title}`)).toLowerCase().indexOf(data.toLowerCase()) > -1 )
                           return d
-                        else
-                            this.queryResult = 'No Results'
+                        else{
+                            //this.queryResult = 'No Results'
+                        }
+                            
                       })
 
       this.content = new Array(...this.content)
