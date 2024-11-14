@@ -74,7 +74,7 @@ class Home extends React.Component {
                 <p className="my-4">
                   { this.state.customFields.length > 0 ? this.state.customFields[1] : `“It is not in the stars to hold our destiny but in ourselves.” ― William Shakespeare`  }
                 </p>
-                <Button variant="outline-light" size="lg" className="rounded-pill my-4" href={`${URL.rootURL}resume-download`} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline-light" size="lg" className="rounded-pill my-4" href="https://rm-cortez.github.io/assets/Ronald-Cortez.pdf" target="_blank" rel="noopener noreferrer">
                   <i className="fa fa-file-text px-5" ></i>
                   <span className="d-block font-weight-light span-vr">View Resume</span>
                 </Button>
