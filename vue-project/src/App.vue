@@ -55,11 +55,11 @@
                     <hr>
                     <button class="btn btn-outline-dark btn-sm"
                     v-on:click="viewMore" :id="query.id"  >
-                    {{showCode ?'View Less' : 'View More'}}
+                    {{viewMoreLbl}}
                     </button>
                   </div>
 
-                  <div class="view-more-section mt-2" :class="showCode ? '' : 'd-none'  ">
+                  <div :id="'view-more-'+query.id" class="view-more-section mt-2 d-none" >
                     <hr>
 
                     <div class="alert alert-primary" v-if="query.dsc != null && query.dsc !='' ">
@@ -114,7 +114,9 @@ export default {
       fullWidth:true,
       content: [],
       viewMoreLabel: 'View More',
-      showCode: false
+      showCode: false,
+      viewMoreLbl: 'View More',
+      viewLessLbl: 'View Less'
 
 
     }
@@ -186,6 +188,10 @@ export default {
       console.log('content',this.content, this.content.length)
     },
     viewMore: function(e){
+
+      
+
+    /*
       this.showCode = !this.showCode
 
       let el = '#fw-'+ e.target.id
@@ -196,6 +202,29 @@ export default {
      else {
        document.querySelector( el ).classList.add('fullwidth')
      }
+
+     */
+
+
+    var stupid = e.target.innerText
+    let el = '#fw-'+ e.target.id
+    let div = '#view-more-'+ e.target.id
+
+     if (stupid == this.viewMoreLbl){
+
+        e.target.innerText = this.viewLessLbl
+        document.querySelector( el ).classList.add('fullwidth')
+        document.querySelector( div ).classList.remove('d-none')
+
+     }
+     else{
+
+        e.target.innerText = this.viewMoreLbl
+        document.querySelector( el ).classList.remove('fullwidth')
+        document.querySelector( div ).classList.add('d-none')
+     }
+
+
     }
   },
   beforeUpdate(){
