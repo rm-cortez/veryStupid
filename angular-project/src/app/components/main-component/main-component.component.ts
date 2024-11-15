@@ -9,4 +9,28 @@ import { Component } from '@angular/core';
 })
 export class MainComponentComponent {
 
+content = null
+  dbError = true
+
+  constructor() {
+
+   
+
+/*
+    http.get(`http://localhost/content-builder.php?type=angular`)
+    .subscribe(
+      (data:any) => {
+        this.content = data[0].content
+        //console.log(data)
+      },
+      err => {
+        this.dbError = true
+
+      }
+
+    )
+
+*/
+  }
+
 }
