@@ -1,0 +1,29 @@
+<div class="col-md-12 homepage px-4 py-5 animate__animated animate__zoomIn" >
+  <div class="row no-gutters border rounded shadow position-relative bg-light">
+    <div class="p-4 col-md-12">
+      <div *ngIf="!dbError; else errorBlock " [innerHTML]="content" ></div>
+      <ng-template #errorBlock>
+        <div class="">
+          <h2><strong>Angular Project</strong></h2>
+          <ul>
+           	<li>This application applies content from this website
+          <ul>
+           	<li><a href="https://www.insider.com/what-every-state-is-best-known-for">Insider</a></li>
+          </ul>
+          </li>
+          </ul>
+          <h2><strong>Technologies Used</strong></h2>
+          <ul>
+           	<li>Angular</li>
+           	<li>Animate.css</li>
+           	<li>Bootstrap</li>
+           	<li>FontAwesome</li>
+           	<li>Google Maps</li>
+           	<li>Mysql</li>
+           	<li>PHP (BackEnd)</li>
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

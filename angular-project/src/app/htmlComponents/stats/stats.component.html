@@ -1,0 +1,28 @@
+
+<div class="col-md-12 my-5 animate__animated animate__backInUp cards-stats"
+*ngIf="show_stats">
+  <div class="row no-gutters border rounded shadow bg-light m-4 position-relative">
+
+    <div class="p-4 m-auto results-section ">
+      <button id="btn-close"
+      class="btn btn-xs"
+      (click)="close_window()"
+      >
+        <i class="text-secondary fa fa-close"></i>
+      </button>
+      <button class="btn btn-outline-success btn-block mb-4"
+              title="Play again"
+              type="button"
+              (click)="reload()">
+                <i class="fa fa-play"></i>
+      </button>
+
+      <h2 class="h2-header"># of tries: {{counter}}</h2>
+      <p class="attempts-number" *ngIf=" (counter - (total/2) ) > 0">
+        <i class="fa fa-close"></i>
+        Wrong Attempts: {{ counter - (total/2)  }}
+      </p>
+
+    </div>
+  </div>
+</div>
