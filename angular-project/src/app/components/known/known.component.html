@@ -44,7 +44,7 @@
                 id="btn-info"
                 type="button"
                 (click)="showMap()"
-                class="btn btn-outline-secondary float-left">
+                class="btn btn-outline-secondary float-left d-none">
                   {{btnLabel.info}}  <i class="fa fa-info-circle"></i>
         </button>
         <button
@@ -62,9 +62,9 @@
     <div class="col-md-12 known-for my-5 animate__animated animate__backInUp d-none"
           [class]=" this.counter == this.states.length? 'show':'' ">
       <div class="row no-gutters border rounded shadow position-relative bg-light m-4 vh-65 end-panel">
-        <div class="p-4 m-auto results-section">
+        <div class="p-4 m-auto results-section text-center">
     
-          <button class="btn btn-outline-success btn-block mb-4"
+          <button class="btn btn-outline-success btn-block mb-4 col-md-4"
                   type="button"
                   title="Play again"
                   (click)="reload()">
@@ -84,7 +84,7 @@
                     id="btn-showAnswers"
                     type="button"
                     (click)="showMap()"
-                    class="btn btn-outline-secondary">
+                    class="btn btn-outline-secondary d-none">
                       {{btnLabel.showAnswers}}
             </button>
           </div>

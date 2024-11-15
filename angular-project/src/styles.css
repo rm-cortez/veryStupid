@@ -2,3 +2,15 @@
 .remove-underline{
     text-decoration: none !important;
 }
+
+.badge-section .badge{
+    min-width:180px;
+    position:relative;
+}
+
+
+.badge-section .badge > .fa{
+   position:absolute;
+   right:15px;
+
+}

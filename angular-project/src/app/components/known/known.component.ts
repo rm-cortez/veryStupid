@@ -81,7 +81,7 @@ states:any[] = []
 
     var answers:any[] = this.returnAnswers(answer,fields)
 
-    console.log('quePaseElImbecil',answers)
+    //console.log('answers',answers)
 
     this.question.question = this.states[this.counter].question
     this.question.title = this.states[this.counter].knownFor
@@ -160,6 +160,13 @@ incrementCounter(){
   
     //Clears badge-section for user input
     //document.querySelector('.badge-section').classList.remove('lock-answer')
+
+    var btnSection = (document.querySelector('#btnSection')) as HTMLElement
+    btnSection.classList.remove('show')
+
+    var badgeSection = (document.querySelector('.badge-section')) as HTMLElement
+    badgeSection.classList.remove('lock-answer')
+
   }
 
   getResults(type = 1){
@@ -171,7 +178,13 @@ incrementCounter(){
   clearAnswerSection(){
     //document.querySelector('#right-answer').classList.remove('showAnswer')
     //document.querySelector('#wrong-answer').classList.remove('showAnswer')
-  }
+    var rightAnswer = (document.querySelector('#right-answer')) as HTMLElement
+    rightAnswer.classList.remove('showAnswer')
+
+    var wrongAnswer = (document.querySelector('#wrong-answer')) as HTMLElement
+    wrongAnswer.classList.remove('showAnswer')  
+
+}
 
  rbChangeHandler(e:any){
 
