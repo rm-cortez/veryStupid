@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
-
+ logo = 'assets/img/cropped-logo.png'
 }
