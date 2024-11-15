@@ -186,10 +186,14 @@ incrementCounter(){
  
     if( this.answerValue == this.states[this.counter].name ){
       //document.querySelector('#right-answer').classList.add('showAnswer')
+       var rightAnswer = (document.querySelector('#right-answer')) as HTMLElement
+      rightAnswer.classList.add('showAnswer')
        e.target.childNodes[1].classList.add('fa-check')
       this.states[this.counter].results= 1
     }else{
       //document.querySelector('#wrong-answer').classList.add('showAnswer')
+      var wrongAnswer = (document.querySelector('#wrong-answer')) as HTMLElement
+      wrongAnswer.classList.add('showAnswer')
       document.querySelectorAll('.badge-section .badge i').forEach(element => {
         element.classList.add('fa-close')
       })
@@ -198,6 +202,12 @@ incrementCounter(){
  
     //document.querySelector('#btnSection').classList.add('show')
     //document.querySelector('.badge-section').classList.add('lock-answer')
+
+    var btnSection = (document.querySelector('#btnSection')) as HTMLElement
+    btnSection.classList.add('show')
+
+    var badgeSection = (document.querySelector('.badge-section')) as HTMLElement
+    badgeSection.classList.add('lock-answer')
  
     if(this.counter+ 1 == this.states.length){
       this.btnLabel.next = 'Results'
