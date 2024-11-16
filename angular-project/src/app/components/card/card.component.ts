@@ -38,20 +38,23 @@ choices = [{rn: 0, id: 0, icon: 'stupid'}]
   icons = [{rn: 0, id: 0, icon: 'stupid'}]
 
   constructor(public ds:DataServiceService){
-    this.icons = [] 
-    this.icons = ds.getDataIcons()
+   
+    
     this.choices = []
-    console.log(this.icons)
-
-   var idxs:any[] = this.shuffle(this.icons.length)
-    var shuffledIcons:any[] = []
-
-    console.log('idx',idxs)
-    idxs.forEach( (idx:any) => shuffledIcons.push(this.icons[idx]) )
+    
 
     
-    this.icons = shuffledIcons
-    console.log('shuffled',shuffledIcons,this.icons)
+    var shuffledIcons:any[] = []
+    shuffledIcons  = ds.getDataIcons()
+    var idxs:any[] = this.shuffle(shuffledIcons.length)
+
+    //console.log('idx',idxs)
+    this.icons = []
+    //this.icons = Array.from(shuffledIcons)
+    idxs.forEach( (idx:any) => this.icons.push(shuffledIcons[idx]) )
+
+    
+    //console.log('shuffled',shuffledIcons,this.icons)
 
   }
  
@@ -81,14 +84,22 @@ choices = [{rn: 0, id: 0, icon: 'stupid'}]
         this.choices.push(e.target)
       }
 
-      console.log(e.target)
+      //console.log(e.target)
       e.target.classList.add("animate__fadeOut")
 
       //checks for # of cards revealed
       if(this.choices.length == 2){
+         
+        var choice1 = this.icons.filter(icon => `${icon.id}` == `${this.choices[0].id}`)[0].icon
+        var choice2 = this.icons.filter(icon => `${icon.id}` == `${this.choices[1].id}`)[0].icon
 
+        //console.log(choice1,choice2,this.choices[0],this.choices[1])
+
+         
+
+        
         //checks if both cards are not equal
-        if(this.choices[0]?.icon != this.choices[1]?.icon){
+        if(choice1 != choice2){
 
           this.resultColor = 'danger'
           this.result  = this.wrongMessages[Math.floor( Math.random() * this.wrongMessages.length )]

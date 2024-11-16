@@ -6,9 +6,9 @@
 
   <div class="cards-view-main-content row no-gutters border rounded shadow position-relative bg-light my-2">
     <h1 class="result-txt text-{{resultColor}} animate__animated {{result_animation}}"><i>{{result}}</i></h1>
-    <div *ngFor="let icon of icons" class="col-md-2 text-center">
+    <div id="div-{{icon.id}}"  *ngFor="let icon of icons" class="col-md-2 text-center ">
       <div>
-          <div id="{{icon.id}}" class="faceup animate__animated elImbecil-{{icon.id}}" (click)="show_icon($event)"></div>
+          <div id="{{icon.id}}"   class="faceup animate__animated elImbecil-{{icon.id}}" (click)="show_icon($event)"></div>
           <i class="fa {{icon.icon}}" ></i>
       </div>
     </div>
