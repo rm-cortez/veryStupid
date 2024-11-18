@@ -14,3 +14,8 @@
    right:15px;
 
 }
+
+/* removes google unsolicited message */
+#map > div:last-child {
+    visibility: hidden;
+}
