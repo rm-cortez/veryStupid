@@ -1,11 +1,16 @@
 import { Component } from '@angular/core';
 import { IntroComponent } from '../../htmlComponents/intro/intro.component';
 import { DataHandlerService } from './data-handler.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../../htmlComponents/html/modal/modal.component';
+
+declare var google:any;
+
 
 @Component({
   selector: 'app-known',
   standalone: true,
-  imports: [IntroComponent],
+  imports: [IntroComponent,ModalComponent],
   templateUrl: './known.component.html',
   styleUrl: './known.component.css'
 })
@@ -13,8 +18,14 @@ export class KnownComponent {
 
 states:any[] = []
   counter = 0
-  modalRef = null
-  map = null
+
+  modalRef = {componentInstance:{title:'stupid'}}
+
+  map = {
+
+     setCenter: (a:any) => {console.log('stupif')},
+     setZoom: (num:any) => {console.log('idiot')} 
+  }
 
   answerValue = null
 
@@ -58,7 +69,7 @@ states:any[] = []
 
 
   
-  constructor(public hs:DataHandlerService){
+  constructor(public hs:DataHandlerService,public  modalService: NgbModal){
 
 
    this.wrongMessage = this.wrongMessages[this.getRandomNumber(this.wrongMessages.length)]
@@ -134,7 +145,7 @@ incrementCounter(){
     }
   }
 
-  showMap(){}
+  
 
   reload(){
     location.reload();
@@ -228,5 +239,71 @@ incrementCounter(){
  
  
   }
+
+showMap(){
+
+    this.modalRef = this.modalService.open(ModalComponent);
+
+
+    this.map = new google.maps.Map(document.getElementById("map"), {
+
+      zoom: 4,
+      mapTypeControl: false
+    })
+
+
+
+    if(this.counter == this.states.length){
+
+      this.modalRef.componentInstance.title = 'Answers'
+
+      //default
+      this.map.setCenter({lat:39.66397054025678,lng:-101.70125834109443})
+      this.map.setZoom(3)
+
+      var markers = []
+
+      this.states.map(st => {
+        var marker = new google.maps.Marker({
+                  map:this.map,
+                  position: {lat:st.lat,lng:st.lng},
+                  label: st.abbr,
+                  iw:new google.maps.InfoWindow
+                })
+
+
+        marker.iw.setPosition({lat:st.lat, lng: st.lng} );
+        marker.iw.setContent(st.dsc);
+        //marker.iw.open(this.map, marker);
+
+
+        marker.addListener('click', function(e:any){
+          console.log('stupid','marker')
+          //this.iw.open(this.map, marker);
+        })
+      })
+
+    }
+    else{
+        this.modalRef.componentInstance.title = this.states[this.counter].name
+
+        var lat = this.states[this.counter].lat
+        var lng = this.states[this.counter].lng
+
+        this.map.setCenter({lat:lat,lng:lng})
+
+        var marker = new google.maps.Marker({
+                  map: this.map,
+                  position: {lat:lat,lng:lng},
+                  label:this.states[this.counter].abbr
+                });
+
+        var infoWindow = new google.maps.InfoWindow
+        infoWindow.setPosition({lat:lat, lng: lng} );
+        infoWindow.setContent(this.states[this.counter].dsc);
+        infoWindow.open(this.map, marker);
+      }
+
+}
 
 }
