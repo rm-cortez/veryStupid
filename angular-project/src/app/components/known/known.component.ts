@@ -19,12 +19,12 @@ export class KnownComponent {
 states:any[] = []
   counter = 0
 
-  modalRef = {componentInstance:{title:'stupid'}}
+  modalRef = {componentInstance:{title:''}}
 
   map = {
 
-     setCenter: (a:any) => {console.log('stupif')},
-     setZoom: (num:any) => {console.log('idiot')} 
+     setCenter: (a:any) => {console.log('')},
+     setZoom: (num:any) => {console.log('')} 
   }
 
   answerValue = null
@@ -34,7 +34,7 @@ states:any[] = []
   question = {
     question:'',
     title:'',
-    answers:['elImbecil','elIdiota','elCojudo']
+    answers:['','','']
   }
 
   btnLabel = {
@@ -76,7 +76,7 @@ states:any[] = []
     this.correctMessage = this.correctMessages[this.getRandomNumber(this.correctMessages.length)]
 
 
-   console.log(hs.getStaticData())
+   //console.log(hs.getStaticData())
 
    this.states = hs.getStaticData()
    this.init()
@@ -101,7 +101,7 @@ states:any[] = []
 
     this.question.answers = answers
 
-    console.log(this.question)
+    //console.log(this.question)
   }
 
 
@@ -278,9 +278,14 @@ showMap(){
 
 
         marker.addListener('click', function(e:any){
-          console.log('stupid','marker')
+          console.log('marker-event',e)
+          
           //this.iw.open(this.map, marker);
+          marker.iw.open(e.mapref, marker);
         })
+       marker.mapref = this.map
+
+
       })
 
     }
